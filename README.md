@@ -21,7 +21,17 @@ reader('myfile.csv', handler, { skipHeader: true });
 ### API
 
 ```javascript
-reader(
-  fileName: string, handler: (data: Array<string>, cb: () => Promise) => void, { delimiter = ',', skipHeader = false , operationLimit = 1e4 }
-)
+function reader(
+  fileName: string,
+  handler: (data: Array<string>, cb: () => Promise<void>) => void,
+  {
+    delimiter = ',',
+    skipHeader = false,
+    operationLimit = 1e4,
+  }: {|
+    delimiter: string,
+    skipHeader: boolean,
+    operationLimit: number,
+  |},
+): Promise<void> {}
 ```

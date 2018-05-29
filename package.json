@@ -1,6 +1,6 @@
 {
-  "name": "csv-readliner",
-  "version": "0.0.6",
+  "name": "csv-linereader",
+  "version": "0.0.9",
   "author": "Oleg Nosov <olegnosov1@gmail.com>",
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -10,10 +10,13 @@
     "eslint-plugin-react": "^7.8.2",
     "jest": "^23.0.1"
   },
+  "scripts": {
+    "test": "jest"
+  },
   "license": "MPL-2.0",
   "keywords": ["csv", "linereader"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/olegnn/csv-readliner.git"
+    "url": "https://github.com/olegnn/csv-linereader.git"
   }
 }

@@ -60,16 +60,13 @@ describe('reader tests', () => {
     }));
 
   test('it measures performance', () =>
-    new Promise((resolve) => {
+    new Promise(async (resolve) => {
       let handleCount = 0;
       const startTime = performance.now();
-      const handler = async (data, cb) => {
-        if (++handleCount === 100) {
-          console.log(`100 lines in: ${performance.now() - startTime}`);
-          expect(true).toBe(true);
-          resolve();
-        }
-      };
-      reader('__tests__/test_data.csv', handler, { skipHeader: true });
+      const handler = (_, done) => ++handleCount && done();
+      await reader('__tests__/test_data.csv', handler, { skipHeader: true });
+      console.log(`100 lines in: ${performance.now() - startTime}`);
+      expect(handleCount).toBe(1e2);
+      resolve();
     }));
 });
