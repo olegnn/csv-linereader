@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 
-module.exports = (fileName, handler, { ...config } = {}) => {
+module.exports = (fileName, handler, config = {}) => {
   const { delimiter = ',', skipHeader = false } = config;
   let { operationLimit: availableOperationsCount = 1e4 } = config;
 
