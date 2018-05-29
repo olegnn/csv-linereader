@@ -1,17 +1,17 @@
 ## Installation
 
 ```shell
-npm i --save csv-readliner
+npm i --save csv-linereader
 ```
 
 ```shell
-yarn add csv-readliner
+yarn add csv-linereader
 ```
 
 ## Usage
 
 ```javascript
-const reader = require('csv-readliner');
+const reader = require('csv-linereader');
 
 const handler = (data, done) => console.log(data) || done();
 

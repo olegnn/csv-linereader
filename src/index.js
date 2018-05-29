@@ -15,11 +15,11 @@ module.exports = (fileName, handler, config = {}) =>
     const queue = [];
 
     const onEnd = async () => {
+      while (queue.length) {
+        // eslint-disable-next-line
+        await processHandler(queue.shift());
+      }
       if (!availableOperationsCount++) {
-        while (queue.length) {
-          // eslint-disable-next-line
-          await processHandler(queue.shift());
-        }
         lineReader.resume();
       }
     };
