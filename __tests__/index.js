@@ -25,7 +25,7 @@ describe('reader tests', () => {
         handled = true;
         resolve();
       };
-      reader('__tests__/test_data.csv', handler, { hasHeader: true });
+      reader('__tests__/test_data.csv', handler, { skipHeader: true });
     }));
 
   test('it processes limited operation count at the time', () =>
@@ -40,7 +40,7 @@ describe('reader tests', () => {
           setTimeout(cb, 1e5);
         }
       };
-      reader('__tests__/test_data.csv', handler, { hasHeader: true, operationLimit: 2 });
+      reader('__tests__/test_data.csv', handler, { skipHeader: true, operationLimit: 2 });
     }));
 
   test('it pauses stream when operationLimit reached', () =>
@@ -56,7 +56,7 @@ describe('reader tests', () => {
           resolve();
         }
       };
-      reader('__tests__/test_data.csv', handler, { hasHeader: true, operationLimit: 1 });
+      reader('__tests__/test_data.csv', handler, { skipHeader: true, operationLimit: 1 });
     }));
 
   test('it measures performance', () =>
@@ -70,6 +70,6 @@ describe('reader tests', () => {
           resolve();
         }
       };
-      reader('__tests__/test_data.csv', handler, { hasHeader: true });
+      reader('__tests__/test_data.csv', handler, { skipHeader: true });
     }));
 });

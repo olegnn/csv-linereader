@@ -2,7 +2,7 @@ const fs = require('fs');
 const readline = require('readline');
 
 module.exports = (fileName, handler, { ...config } = {}) => {
-  const { delimiter = ',', hasHeader = false } = config;
+  const { delimiter = ',', skipHeader = false } = config;
   let { operationLimit: availableOperationsCount = 1e4 } = config;
 
   if (availableOperationsCount < 1) throw new Error("Operation limit can't be less than 1");
@@ -42,5 +42,5 @@ module.exports = (fileName, handler, { ...config } = {}) => {
     lineReader.on('line', lineHandler);
   };
 
-  lineReader.on('line', hasHeader ? firstLineSkipper : lineHandler);
+  lineReader.on('line', skipHeader ? firstLineSkipper : lineHandler);
 };
