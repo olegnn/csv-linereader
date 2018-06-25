@@ -5,6 +5,7 @@ module.exports = (fileName, handler, config = {}) =>
   new Promise((resolve) => {
     const { delimiter = ',', skipHeader = false } = config;
     let { operationLimit: availableOperationsCount = 1e4 } = config;
+    let ended = false;
 
     if (availableOperationsCount < 1) throw new Error("Operation limit can't be less than 1");
 
@@ -19,6 +20,7 @@ module.exports = (fileName, handler, config = {}) =>
         // eslint-disable-next-line
         await processHandler(queue.shift());
       }
+      if (ended) return;
       if (!availableOperationsCount++) {
         lineReader.resume();
       }
@@ -44,5 +46,8 @@ module.exports = (fileName, handler, config = {}) =>
     };
 
     lineReader.on('line', skipHeader ? firstLineSkipper : lineHandler);
-    lineReader.on('close', resolve);
+    lineReader.on('close', () => {
+      ended = true;
+      resolve();
+    });
   });
