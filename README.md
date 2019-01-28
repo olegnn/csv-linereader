@@ -13,9 +13,21 @@ yarn add csv-linereader
 ```javascript
 const reader = require('csv-linereader');
 
-const handler = (data, done) => console.log(data) || done();
+const handler = async data => {
+  console.log(data);
+  await new Promise(
+    resolve =>
+      void setTimeout(function() {
+        console.log('Unlock handler');
+        resolve();
+      }, 1e2),
+  );
+};
 
-reader('myfile.csv', handler, { skipHeader: true });
+async function main() {
+  await reader('myfile.csv', handler, { skipHeader: true });
+  console.log('Done.');
+}
 ```
 
 ### API
@@ -23,7 +35,7 @@ reader('myfile.csv', handler, { skipHeader: true });
 ```javascript
 function reader(
   fileName: string,
-  handler: (data: Array<string>, cb: () => Promise<void>) => void,
+  handler: (data: Array<string>) => Promise<void>,
   {
     delimiter = ',',
     skipHeader = false,
