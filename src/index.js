@@ -37,7 +37,10 @@ module.exports = async (fileName, handler, config = {}) => {
     }
   };
 
-  const processHandler = line => handler(line.split(delimiter)).then(onEnd);
+  const processHandler = line =>
+    handler(line.split(delimiter))
+      .then(onEnd)
+      .catch(onEnd);
 
   const lineHandler = (line) => {
     if (availableOperationsCount > 0) {
