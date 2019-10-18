@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`reader tests it passes incorrect operation limit 1`] = `[Error: Operation limit can't be less than 1]`;
+
 exports[`reader tests it reads incorrect file 1`] = `[Error: Failed to create read stream: Error: ENOENT: no such file or directory, stat '__tests__/wqwe']`;

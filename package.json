@@ -1,6 +1,6 @@
 {
   "name": "csv-linereader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Oleg Nosov <olegnosov1@gmail.com>",
   "devDependencies": {
     "eslint": "^4.19.1",
